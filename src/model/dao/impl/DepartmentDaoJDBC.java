@@ -27,7 +27,7 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 		PreparedStatement st = null;		
 		try {
 			st = conn.prepareStatement(
-					"INSERT INTO departament "
+					"INSERT INTO department "
 					+ "(Name) "
 					+ "VALUES "
 					+ "(?)",
@@ -42,6 +42,7 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 					int id = rs.getInt(1);
 					obj.setId(id);
 				}
+				DB.closeResultSet(rs);
 			}
 			else {
 				throw new DbException("Unexpectec error! No rows affected!");
@@ -80,7 +81,7 @@ public class DepartmentDaoJDBC implements DepartmentDao{
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"DELETE FROM departmt WHERE Id = ?");
+					"DELETE FROM department WHERE Id = ?");
 			st.setInt(1, id);
 			st.executeUpdate();
 		}
